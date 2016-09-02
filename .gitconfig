@@ -10,7 +10,10 @@
 [alias]
 	co = checkout
 	br = branch
+	a = add
+	ap = add -p
 	ci = commit
+	s = show
 	st = status
 	d = diff
 	l = log
