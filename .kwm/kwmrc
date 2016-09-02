@@ -1,5 +1,27 @@
 // See https://koekeishiya.github.io/kwm/kwmc.html
 
+////////// Constants ////////////
+
+define mod1 rcmd
+define mod2 rcmd+shift
+
+define screen1 2
+define screen2 0
+define screen3 1
+
+////////// Rules ////////////
+
+kwmc rule owner="Finder" properties={role="AXDialog"}
+kwmc rule owner="Finder" role="AXDialog" properties={float="true"}
+
+// IntelliJ
+kwmc rule name="Evaluate Expression" properties={float="true"}
+kwmc rule name="Files Merged with Conflicts" properties{float="true"}
+kwmc rule name="Run/Debug Configurations" properties{float="true"}
+kwmc rule name="Preferences" properties{float="true"}
+
+////////// Configuration ////////////
+
 // Set default values for screen padding
 kwmc config padding 0 0 0 0
 
@@ -18,18 +40,17 @@ kwmc config lock-to-container off
 // Allow window focus to wrap-around
 kwmc config cycle-focus on
 
-define mod1 rcmd
-define mod2 rcmd+rshift
+////////// Key Bindings ////////////
 
 // Give focus to screen
-kwmc bindsym mod1-w display -f 2
-kwmc bindsym mod1-e display -f 0
-kwmc bindsym mod1-r display -f 1
+kwmc bindsym mod1-w display -f screen1
+kwmc bindsym mod1-e display -f screen2
+kwmc bindsym mod1-r display -f screen3
 
 // Move Focused Window To Screen
-kwmc bindsym mod2-w window -m display 2
-kwmc bindsym mod2-e window -m display 0
-kwmc bindsym mod2-r window -m display 1
+kwmc bindsym mod2-w window -m display screen1
+kwmc bindsym mod2-e window -m display screen2
+kwmc bindsym mod2-r window -m display screen3
 
 // Modify Container
 kwmc bindsym mod1-space window -c split-mode toggle
