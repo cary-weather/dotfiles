@@ -33,7 +33,6 @@ kwmc config padding 0 0 0 0
 kwmc config focus-follows-mouse on
 
 // The mouse will automatically move to the center of the focused window
-// TODO: Moving the mouse between screens moves the mouse to the center of a window.
 kwmc config mouse-follows-focus on
 
 // Focus-follows-mouse is temporarily disabled when a floating window has focus
@@ -44,6 +43,9 @@ kwmc config lock-to-container off
 
 // Allow window focus to wrap-around
 kwmc config cycle-focus on
+
+// Fix kwm 3.1.0 startup problem (see #459)
+kwmc config border focused on
 
 ////////// Key Bindings ////////////
 
@@ -78,8 +80,17 @@ kwmc bindsym mod2-k window -s prev
 kwmc bindsym mod2-j window -s next
 
 // Move Between Spaces
-kwmc space -fExperimental left mod1-,
-kwmc space -fExperimental right mod1-.
+kwmc bindsym mod1-, space -fExperimental left
+kwmc bindsym mod1-. space -fExperimental right
+kwmc bindsym mod1-1 space -fExperimental 1
+kwmc bindsym mod1-2 space -fExperimental 2
+kwmc bindsym mod1-3 space -fExperimental 3
+kwmc bindsym mod1-4 space -fExperimental 4
+kwmc bindsym mod1-5 space -fExperimental 5
+kwmc bindsym mod1-6 space -fExperimental 6
+kwmc bindsym mod1-7 space -fExperimental 7
+kwmc bindsym mod1-8 space -fExperimental 8
+kwmc bindsym mod1-9 space -fExperimental 9
 
 // Move Window to Space
 kwmc bindsym mod2-, window -m space left
@@ -90,3 +101,9 @@ kwmc bindsym mod1-z window -z fullscreen
 
 // Toggle floating
 kwmc bindsym mod2-t window -t focused
+
+// Reload config
+kwmc bindsym mod1-q config reload
+
+// Quit kwm (or restart if running with brew services)
+kwmc bindsym rcmd+shift+alt-q quit
