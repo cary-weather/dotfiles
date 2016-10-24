@@ -1,6 +1,6 @@
 [user]
 	email = cary.robbins.contractor@weather.com
-	name = Cary M. Robbins (The Weather Company)
+	name = Cary Robbins
 [push]
 	default = current
 [pull]
@@ -13,10 +13,14 @@
 	a = add
 	ap = add -p
 	ci = commit
+	fu = commit --fixup
+	sq = commit --squash
 	s = show
 	st = status
 	d = diff
+	dc = diff --cached
 	l = log
+	l1 = log --oneline
 	f = fetch
 	unstage = reset HEAD --
 	autosquash = rebase -i --autosquash
