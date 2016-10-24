@@ -5,24 +5,39 @@
 define mod1 rcmd
 define mod2 rcmd+shift
 
-define screen1 2
+// 4 monitors
+define screen1 3
 define screen2 0
 define screen3 1
+define screen4 2
+
+// 3 monitors
+//define screen1 2
+//define screen2 0
+//define screen3 1
+
+// Right-hand bindings
+define screenkey1 u
+define screenkey2 i
+define screenkey3 o
+define screenkey4 p
 
 ////////// Rules ////////////
 
-kwmc rule owner="Finder" properties={role="AXDialog"}
-kwmc rule owner="Finder" role="AXDialog" properties={float="true"}
+kwmc rule owner="Finder" properties={float="true"}
+kwmc rule owner="System Preferences" properties={float="true"}
+kwmc rule owner="iTerm2" properties={role="AXDialog"}
+kwmc rule owner="iTerm2" title="Preferences" properties={float="true"}
 
-// IntelliJ
-kwmc rule name="Welcome to IntelliJ IDEA" properties={float="true"}
-kwmc rule name="New Project" properties={float="true"}
-kwmc rule name="New Directory" properties={float="true"}
-kwmc rule name="Evaluate Expression" properties={float="true"}
-kwmc rule name="Files Merged with Conflicts" properties={float="true"}
-kwmc rule name="Run/Debug Configurations" properties={float="true"}
-kwmc rule name="Preferences" properties={float="true"}
-kwmc rule name="Project Structure" properties={float="true"}
+// Floats all IntelliJ windows by default so we can manually
+// "un-float" ourselves if needed.  Useful since most of IntelliJ's
+// pop-up windows shouldn't be tiled.
+//kwmc rule owner="IntelliJ IDEA" except=".*\[.*\]" properties={float="true"}
+//kwmc rule owner="IntelliJ IDEA" title=".*\[.*\]" properties={float="false"}
+kwmc rule owner="IntelliJ IDEA" title="Welcome to IntelliJ IDEA" properties={float="true"}
+kwmc rule owner="IntelliJ IDEA" title="New Project" properties={float="true"}
+kwmc rule owner="IntelliJ IDEA" title="Run/Debug Configurations" properties={float="true"}
+kwmc rule owner="IntelliJ IDEA" title="Evaluate Expression" properties={float="true"}
 
 ////////// Configuration ////////////
 
@@ -34,6 +49,8 @@ kwmc config focus-follows-mouse on
 
 // The mouse will automatically move to the center of the focused window
 kwmc config mouse-follows-focus on
+kwmc bindsym mod2+alt-m config mouse-follows-focus on
+kwmc bindsym mod2+alt-n config mouse-follows-focus off
 
 // Focus-follows-mouse is temporarily disabled when a floating window has focus
 kwmc config standby-on-float on
@@ -50,14 +67,16 @@ kwmc config border focused on
 ////////// Key Bindings ////////////
 
 // Give focus to screen
-kwmc bindsym mod1-w display -f screen1
-kwmc bindsym mod1-e display -f screen2
-kwmc bindsym mod1-r display -f screen3
+kwmc bindsym mod1-screenkey1 display -f screen1
+kwmc bindsym mod1-screenkey2 display -f screen2
+kwmc bindsym mod1-screenkey3 display -f screen3
+kwmc bindsym mod1-screenkey4 display -f screen4
 
 // Move Focused Window To Screen
-kwmc bindsym mod2-w window -m display screen1
-kwmc bindsym mod2-e window -m display screen2
-kwmc bindsym mod2-r window -m display screen3
+kwmc bindsym mod2-screenkey1 window -m display screen1
+kwmc bindsym mod2-screenkey2 window -m display screen2
+kwmc bindsym mod2-screenkey3 window -m display screen3
+kwmc bindsym mod2-screenkey4 window -m display screen4
 
 // Modify Container
 kwmc bindsym mod1-space window -c split-mode toggle
@@ -95,6 +114,15 @@ kwmc bindsym mod1-9 space -fExperimental 9
 // Move Window to Space
 kwmc bindsym mod2-, window -m space left
 kwmc bindsym mod2-. window -m space right
+kwmc bindsym mod2-1 window -m space 1
+kwmc bindsym mod2-2 window -m space 2
+kwmc bindsym mod2-3 window -m space 3
+kwmc bindsym mod2-4 window -m space 4
+kwmc bindsym mod2-5 window -m space 5
+kwmc bindsym mod2-6 window -m space 6
+kwmc bindsym mod2-7 window -m space 7
+kwmc bindsym mod2-8 window -m space 8
+kwmc bindsym mod2-9 window -m space 9
 
 // Toggle fullscreen zoom
 kwmc bindsym mod1-z window -z fullscreen
@@ -103,7 +131,7 @@ kwmc bindsym mod1-z window -z fullscreen
 kwmc bindsym mod2-t window -t focused
 
 // Reload config
-kwmc bindsym mod1-q config reload
+kwmc bindsym mod1-\ config reload
 
 // Quit kwm (or restart if running with brew services)
-kwmc bindsym rcmd+shift+alt-q quit
+kwmc bindsym mod2-\ quit
